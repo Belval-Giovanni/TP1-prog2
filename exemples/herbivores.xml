@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lac>
+    <energieSolaire>1000</energieSolaire>
+    <plante quantite="10">
+        <nomEspece>Bident de Beck</nomEspece>
+        <besoinEnergie>20</besoinEnergie>
+        <efficaciteEnergie>0.01</efficaciteEnergie>
+        <resilience>0.9</resilience>
+        <fertilite>0.02</fertilite>
+        <ageFertilite>5</ageFertilite>
+        <energieEnfant>10</energieEnfant>
+    </plante>
+    <plante quantite="7">
+        <nomEspece>Cornifle nageant</nomEspece>
+        <besoinEnergie>25</besoinEnergie>
+        <efficaciteEnergie>0.02</efficaciteEnergie>
+        <resilience>0.88</resilience>
+        <fertilite>0.015</fertilite>
+        <ageFertilite>7</ageFertilite>
+        <energieEnfant>20</energieEnfant>
+    </plante>
+    <herbivore quantite="20">
+        <nomEspece>Mulet perlé</nomEspece>
+        <besoinEnergie>4</besoinEnergie>
+        <efficaciteEnergie>0.005</efficaciteEnergie>
+        <resilience>0.60</resilience>
+        <fertilite>0.05</fertilite>
+        <ageFertilite>12</ageFertilite>
+        <energieEnfant>6</energieEnfant>
+        <debrouillardise>0.8</debrouillardise>
+        <voraciteMin>0.1</voraciteMin>
+        <voraciteMax>0.2</voraciteMax>
+        <aliments>Bident de Beck</aliments>
+        <aliments>Cornifle nageant</aliments>
+    </herbivore>
+</lac>

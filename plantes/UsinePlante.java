@@ -9,7 +9,7 @@ public class UsinePlante {
     int ageFertilite;
     double energieEnfant;
 
-    double[] tableau = {0,0,0,0,0,0}; // sert a stocker la valeur de chaque attribut sauf le nom de l'espece avec 0 par defauts.
+    double[] tableau = {0,0,0,0,0.5,0}; // sert a stocker la valeur de chaque attribut sauf le nom de l'espece avec 0 par defauts.
 
     //_____________________________
 
@@ -82,6 +82,7 @@ public class UsinePlante {
         }
 
         this.fertilite = fertilite;
+        this.tableau[4] = fertilite;
     }
 
     public void setAgeFertilite(int ageFertilite) {

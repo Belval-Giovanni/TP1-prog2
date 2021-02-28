@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lac>
+    <energieSolaire>60</energieSolaire>
+    <plante quantite="1">
+        <nomEspece>Bident de Beck</nomEspece>
+        <besoinEnergie>20</besoinEnergie>
+        <efficaciteEnergie>0.01</efficaciteEnergie>
+        <resilience>0.9</resilience>
+        <fertilite>0.5</fertilite>
+        <ageFertilite>5</ageFertilite>
+        <energieEnfant>20</energieEnfant>
+    </plante>
+</lac>
