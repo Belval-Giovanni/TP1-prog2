@@ -12,3 +12,13 @@ Seul le nom de la plante ne sera pas dans le tableau mais il suffira de voir si 
 
 j'ai personnellement choisi la deuxieme méthode car celle-ci me permet directement d'utilisé les valeurs dans le tableau pour 
 instancié une plante , de plus si je vois qu'un élément du tableau est 0 (c'est a dire que cet attribut n'a pas été initialisé ) j'instance quand meme la plante car 0 est la valeur par défaut. Un autre avantage de cette méthode est que nous pouvons donné les valeur par défaut directement dans le tableau si nous souhaitons en modifié la valeur pour tel ou tel attribut.
+
+
+
+en ce qui concerne la l'implementation de la fonction tick():
+j'ai du rajouter une methode dans ma classe Plante , me permettant de recuperer toute les informations numerique 
+d'une instance dans un tableau , pour pouvoir instancier une plnate fille ayant les memes caractéristique que la mère.
+la Liste plantes dans la class lac a du etre modifiée , en effet pour pouvoir supprimé les plantes mortes et rajouter les plantes
+qui viennes de nettre il fallait pouvoir modifier les differants élement de la liste plantes, l'attribut final lui a 
+donc été retiré
+

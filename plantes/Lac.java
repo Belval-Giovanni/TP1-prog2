@@ -67,6 +67,8 @@ public final class Lac {
 
                 difference = Math.abs(difference);
 
+                System.out.println("age de la plante : "+plante.getAge()); //! test
+
                 if(plante.getAge()>=plante.getAgeFertilite()){
 
                     System.out.println("j'ai l'age pour avoir un enfant"); //! test

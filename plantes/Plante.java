@@ -16,7 +16,7 @@ public class Plante {
 
         this.nomEspece = nomEspece;
         this.energie = args[0];
-        this.age =  5;  //TODO à remettre a zero 
+        this.age =  0; 
         this.besoinEnergie = args[1];
         this.efficaciteEnergie = args[2];
         this.resilience = args[3];
