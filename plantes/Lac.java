@@ -7,21 +7,18 @@ import static java.util.stream.Collectors.*;
 public final class Lac {
     private final int energieSolaire;
     private List<Plante> plantes; //* j'ai retiré l'attribut final
+    private List<Herbivore> herbivores;
 
-    public Lac(int energieSolaire, List<Plante> plantes) {
+    public Lac(int energieSolaire, List<Plante> plantes, List<Herbivore> herbivores) {
         this.energieSolaire = energieSolaire;
         this.plantes = plantes;
+        this.herbivores = herbivores;
     }
 
     /**
      * Avance la simulation d'un cycle.
      */
     public void tick() {
-
-        System.out.println("____________________");   //! test
-        System.out.println("cycle numéro : "+plantes.get(0).getAge()); //! test
-        
- 
 
         // calcul de l'energie totale : 
 
@@ -43,8 +40,6 @@ public final class Lac {
             double energieAbsorbe = energieSolaire*plante.getEnergie()/energieTotale;
             double difference = (plante.getBesoinEnergie()-energieAbsorbe);
 
-            System.out.println("energie absorbé : "+energieAbsorbe); //! test
-
             if(energieAbsorbe<plante.getBesoinEnergie()) // la plante ne reçoit pas assez d'energie
             {
                 double probaSurvie = Math.pow(plante.getResilience(),(int)difference); //calcul de la chance de survivre.
@@ -63,16 +58,10 @@ public final class Lac {
 
             else //la plante reçoit assez d'energie
             {
-                System.out.println("j'ai reçu assez d'energie"); //! test
 
                 difference = Math.abs(difference);
 
-                System.out.println("age de la plante : "+plante.getAge()); //! test
-
                 if(plante.getAge()>=plante.getAgeFertilite()){
-
-                    System.out.println("j'ai l'age pour avoir un enfant"); //! test
-                    System.out.println("nombre d'energie sup : "+(int)difference); //! test
 
                     //si la plante est assez mature pour faire des bébé plantes
 
@@ -81,16 +70,7 @@ public final class Lac {
 
                     while ((nbRoulage<nbUniteEnergie) && (difference != 0)) {
 
-                        System.out.println("nb de roulage  "+nbRoulage); //! test
-                        System.out.println("unité d'energie restante "+(int)difference); //! test
-
-                        // double probaEnfant = Math.random(); //! test
-                        // System.out.println("nombre aleatoire generé "+probaEnfant); //! test
-                        // System.out.println("probabilité d'avoir un enfant "+plante.getFertilite()); //! test
-
                         if(Math.random()<=plante.getFertilite()){ //la plante fais un enfant durant ce roulage
-
-                            System.out.println("nouvel enfant cree"); //! test
 
                             newBorn.add(new Plante(plante.getNomEspece(),plante.getInfo())); 
 
@@ -147,15 +127,27 @@ public final class Lac {
         }
 
         this.plantes = clean;
-
-        System.out.println("nombre de nouveau née : "+newBorn.size()); //! test
-
-        System.out.println("nombre de survivant : "+plantes.size()); //! test
-
-        System.out.println("____________________"); //! test
-
-
         //____________________________________
+
+
+        //! tick pour les herbivores :
+
+        for(Herbivore herbivore : herbivores){
+
+            double energieAbsorbe = 0;
+
+            while (herbivore.getDebrouillardise() < Math.random()) {
+                
+                String aliment = herbivore.getAliments().;
+
+
+            }
+
+
+
+
+
+        }
     }
 
 

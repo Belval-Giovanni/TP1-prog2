@@ -1,3 +1,14 @@
+
+BELVAL GIOVANNI
+YANN SAAH
+
+Introduction : 
+
+
+
+
+I/ Les plantes
+
 la premiere façon de gardé une trace de quel attribut ont été initialisé est de cree un tableau dont chaque position contient un boolean 
 disant si oui ou non tel ou tel variable à été initialisé , ainsi en recupérant ce tableau via un getters on pourra savoir quelles
 sont les attributs qui n'ont pas été initialisé.
@@ -21,4 +32,16 @@ d'une instance dans un tableau , pour pouvoir instancier une plnate fille ayant 
 la Liste plantes dans la class lac a du etre modifiée , en effet pour pouvoir supprimé les plantes mortes et rajouter les plantes
 qui viennes de nettre il fallait pouvoir modifier les differants élement de la liste plantes, l'attribut final lui a 
 donc été retiré
+
+
+II/ les herbivores
+
+pour ce qui concerne les classe Plante , Herbivores , ainsi que les les usines , j'ai opté pour la creation de classe abstraite.
+cela m'a semblé plus adéquoit car dans les deux cas il y a enormément d'attribut en commun.j'ai donc cree unr classe abstraite
+Organisme et une classe abstraite Usine qui sont resppectivement parent de Plante , Herbivore , et des deux classe usine.
+en implemantant une classe abstraite pour les usines je peux factorisé beaucoup de code , et il ne me reste qu'a definir les methodes
+de creation d'instance (ce qui prend peu de ligne ) et le rajout de quelque setters (seulement dans l'usine herbivore).
+
+
+
 
