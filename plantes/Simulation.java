@@ -8,7 +8,7 @@ import java.util.Iterator;
  */
 public final class Simulation {
     public static void main(String[] args) {
-        int nombreCycles = 50;
+        int nombreCycles = 5;  //TODO remmetre a 50
 
         Iterator<String> argsIterator = Arrays.stream(args).iterator();
         while (argsIterator.hasNext()) {
@@ -48,5 +48,6 @@ public final class Simulation {
 
         System.out.println("Après " + nombreCycles + " cycles :");
         lac.imprimeRapport(System.out);
+        lac.imprimeRapportH(System.out);//! test
     }
 }

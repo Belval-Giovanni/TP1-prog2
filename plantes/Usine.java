@@ -8,7 +8,7 @@ public abstract class Usine {
     int ageFertilite;
     double energieEnfant;
 
-    double[] tableau = {0,0,0,0,0.5,0};
+    double[] tableau = {0,0,0,0,0.5,0,0,0,0,0};
 
     // setters :
 

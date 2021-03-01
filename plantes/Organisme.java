@@ -14,7 +14,7 @@ public abstract class Organisme {
 
         this.nomEspece = nomEspece;
         this.energie = args[0];
-        this.age =  0; 
+        this.age =  15;   //TODO a remmetre a zero
         this.besoinEnergie = args[1];
         this.efficaciteEnergie = args[2];
         this.resilience = args[3];

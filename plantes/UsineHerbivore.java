@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -6,9 +8,9 @@ public class UsineHerbivore extends Usine{
     double debrouillardise;
     double voraciteMin;
     double voraciteMax;
-    Set<String> aliments;
+    Set<String> aliments = new LinkedHashSet<String>();
     
-    double[] tableau = {0,0,0,0,0,0,0,0,0}; //sert à stocker les information numerique pertinante.
+    // double[] tableau2 = {tableau[0],tableau[1],tableau[2],tableau[3],tableau[4],tableau[5],0,0,0}; //sert à stocker les information numerique pertinante.
 
     public void setDebrouillardise(double debrouillardise){
 
@@ -61,18 +63,18 @@ public class UsineHerbivore extends Usine{
 
         if(voraciteMax<0){
             this.voraciteMax = 0;
-            this.tableau[7] = 0;
+            this.tableau[8] = 0;
             return;
         } 
 
         if(voraciteMax>1){
             this.voraciteMax = 1;
-            this.tableau[7] = 1;
+            this.tableau[8] = 1;
             return;
         }
 
         this.voraciteMax = voraciteMax;
-        this.tableau[7] = voraciteMax;
+        this.tableau[8] = voraciteMax;
     }
 
     public void addAliment(String aliment){

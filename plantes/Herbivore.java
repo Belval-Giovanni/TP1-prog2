@@ -37,5 +37,11 @@ public class Herbivore extends Organisme {
         return this.aliments;
     }
 
+    double[] getInfo() //renvoi un tableau contenant toute les information numerique d'un carnivore.
+    {
+        double[] info = {energieEnfant,besoinEnergie,efficaciteEnergie,resilience,fertilite,ageFertilite,debrouillardise,voraciteMin,voraciteMax};
+        return info;
+    }
+
 
 }
