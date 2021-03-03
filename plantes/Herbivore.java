@@ -4,8 +4,8 @@ import java.util.Set;
 public class Herbivore extends Organisme {
     
     double debrouillardise;
-    double voraciteMin;
-    double voraciteMax;
+    private double voraciteMin;
+    private double voraciteMax;
     Set<String> aliments;
 
     public Herbivore(String nomEspece,double[] args , Set<String> aliments){

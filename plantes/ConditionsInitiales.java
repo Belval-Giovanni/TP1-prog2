@@ -40,6 +40,7 @@ public final class ConditionsInitiales {
         Integer energieSolaire = null;
         List<Plante> plantes = new ArrayList<>();
         List<Herbivore> herbivores = new ArrayList<>();
+        List<Carnivore> carnivores = new ArrayList<>();
 
         while (this.reader.hasNext()) {
             var event = this.nextEvent();
@@ -68,6 +69,18 @@ public final class ConditionsInitiales {
                             herbivores.add(usine.creerHerbivore());
                         }
                     }
+                    //*  cas d'un carnivore 
+
+                    case "carnivore" -> {
+                        var quantityAttribute = startElement.getAttributeByName(new QName("quantite"));
+                        var quantity = Integer.parseInt(quantityAttribute.getValue());
+                        var usine = new UsineCarnivore();
+                        this.nextCarnivore(usine);
+                        for (int i = 0; i < quantity; i += 1) {
+                            carnivores.add(usine.creerCarnivore());
+                        }
+                    }
+                    //* _________
                 }
             } else if (event.isEndElement()) {
                 // C'est nécessairement le tag fermant </lac>, si le document est bien formé.
@@ -79,7 +92,7 @@ public final class ConditionsInitiales {
             throw new ConditionsInitialesInvalides("energieSolaire non spécifiée");
         }
 
-        return new Lac(energieSolaire, plantes, herbivores);
+        return new Lac(energieSolaire, plantes, herbivores, carnivores);
     }
 
     private void nextPlante(UsinePlante usine) throws ConditionsInitialesInvalides {
@@ -133,6 +146,36 @@ public final class ConditionsInitiales {
             }
         }
     }
+
+    //* definition de nextCarnivore
+
+    private void nextCarnivore(UsineCarnivore usine) throws ConditionsInitialesInvalides {
+        while (true) {
+            var event = this.nextEventIgnoringWhitespace();
+            if (event.isStartElement()) {
+                var startElement = event.asStartElement();
+                var name = startElement.getName().getLocalPart();
+                switch (name) {
+                    case "nomEspece" -> usine.setNomEspece(this.nextString("nomEspece"));
+                    case "besoinEnergie" -> usine.setBesoinEnergie(this.nextDouble("besoinEnergie"));
+                    case "efficaciteEnergie" -> usine.setEfficaciteEnergie(this.nextDouble("efficaciteEnergie"));
+                    case "resilience" -> usine.setResilience(this.nextDouble("resilience"));
+                    case "fertilite" -> usine.setFertilite(this.nextDouble("fertilite"));
+                    case "ageFertilite" -> usine.setAgeFertilite(this.nextInt("ageFertilite"));
+                    case "energieEnfant" -> usine.setEnergieEnfant(this.nextDouble("energieEnfant"));
+                    case "debrouillardise" -> usine.setDebrouillardise(this.nextDouble("debrouillardise"));
+                    case "aliments" -> usine.addAliment(this.nextString("aliments"));
+                    default -> throw new ConditionsInitialesInvalides(
+                        "attribut \"" + name + "\" invalide pour un Carnivore");
+                }
+                this.skipEndTag();
+            } else if (event.isEndElement()) {
+                return;
+            }
+        }
+    }
+
+    //* ____________________________
 
     private String nextString(String context) throws ConditionsInitialesInvalides {
         var characters = this.nextCharacters(context);

@@ -44,4 +44,20 @@ de creation d'instance (ce qui prend peu de ligne ) et le rajout de quelque sett
 
 
 
+III/ Les carnivores:
+
+
+en ce qui concerne les classe Carnvore et usineCarnivore j'ai réeutilisé du code , principalement celui de la classe herbivore.
+ce choix etais preferable pour permettre une meilleure cohésion dans la comprehension du code par un autre Utilisateur , car 
+tres bien pu declaré voraciteMin et voraciteMax en private puis faire hérité la Class Carnivore de la classe herbivore. mais pour un 
+potentiel futur utilisateur ça n'aurrai pas necesserait été logique étant donné que ces deux class sotn utilisé differement et qu'on
+a du mal a se dire qu'un herbivore hérite d'un carnivore.
+pour economisé du code j'aurrai pu faire l'invere , faire hérité Herbivore a Carnivore et ensuite rajouté les attribut de voracité;
+je ne l'ai pas fait en revanche car j'avais deja ecris le code pour la classe herbivore et ça m'aurrai demandé un temps identique (et un plus grand
+risques d'erreur de supprimé la classe pour la recree) sans parler du probleme de cohésion dont on a parler precedement.
+
+dans les conditions initiales j'ai réutilisé du code , exatement le meme que pour les herbivores , mais sans les attribut voracité 
+.
+
+
 

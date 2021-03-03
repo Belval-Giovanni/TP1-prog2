@@ -47,7 +47,8 @@ public final class Simulation {
         }
 
         System.out.println("Après " + nombreCycles + " cycles :");
-        lac.imprimeRapport(System.out);
-        lac.imprimeRapportH(System.out);//! test
+        lac.imprimeRapport(System.out);// pour pouvoir observé le resultat de la simulation sur les plantes.
+        lac.imprimeRapportH(System.out);// pour pouvoir observé le resultat de la simulation sur les herbivores.
+        lac.imprimeRapportC(System.out);// pour pouvoir observé le resultat de la simulation sur les carnivores.
     }
 }
