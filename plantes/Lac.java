@@ -443,6 +443,7 @@ public final class Lac {
                 //on selectionne une plante au hasard qui a aliment comme nom de l'espece:
 
                 List<Herbivore> nourritures = new ArrayList<>();
+                List<Carnivore> alimentCarnivore = new ArrayList<>();
 
                 for (Herbivore herbivore : herbivores) {
                     if(herbivore.getNomEspece().equals(aliment)){
@@ -450,24 +451,78 @@ public final class Lac {
                     }
                 }
 
-                if (nourritures.size() == 0){
+                for (Carnivore carnivore_ :  carnivores){
+                    if(carnivore_.getNomEspece().equals(aliment)){
+                        alimentCarnivore.add(carnivore_);
+                    }
+                }
+
+                if ((nourritures.size() == 0)&&(alimentCarnivore.size() == 0))//il n'ya pas de quoi se nourrir 
+                
+                {
                     break;
                 }
 
-                int indexNourriture = (int)(Math.random()*nourritures.size());
+                else if (nourritures.size() == 0) // il va se nourrir d'un autre carnivore 
+                
+                {
 
-                Herbivore nourriture = nourritures.get(indexNourriture);
+                    int indexNourriture = (int)(Math.random()*alimentCarnivore.size());
 
-                // on ajoute l'energie de l'herbibore  a lenergie latente
+                    Carnivore nourriture = alimentCarnivore.get(indexNourriture);
+
+                    if(nourriture.getTailleMaximum()>carnivore.getTailleMaximum()){
+                        energieLatente+=0; //on ajoute pas d'energie
+                    }
+
+                    else {
+
+                        // on ajoute l'energie de l'herbibore  a lenergie latente
+    
+    
+                        double energieAjouter = nourriture.getEnergie();
+    
+                        energieLatente += energieAjouter;
+    
+                        System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
+    
+                        nourriture.energie -= energieAjouter; //on retire au carnivore l'energie absorber par l'autre carnivore
+
+                    }
 
 
-                double energieAjouter = nourriture.getEnergie();
+                }
 
-                energieLatente += energieAjouter;
+                else  // il va se nourrir d'un herbivore 
+                {
+                    
 
-                System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
+                    int indexNourriture = (int)(Math.random()*nourritures.size());
+    
+                    Herbivore nourriture = nourritures.get(indexNourriture);
 
-                nourriture.energie -= energieAjouter; //on retire a l'herbivore  l'energie absorber par l'carnivore
+                    if(nourriture.getTailleMaximum()>carnivore.getTailleMaximum()){
+                        energieLatente+=0; //on ajoute pas d'energie
+                    }
+
+                    else {
+
+                        // on ajoute l'energie de l'herbibore  a lenergie latente
+        
+        
+                        double energieAjouter = nourriture.getEnergie();
+        
+                        energieLatente += energieAjouter;
+        
+                        System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
+        
+                        nourriture.energie -= energieAjouter; //on retire a l'herbivore  l'energie absorber par l'carnivore
+
+                    }
+    
+
+                }
+
 
             }
 

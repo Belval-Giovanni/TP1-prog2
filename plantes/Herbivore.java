@@ -6,6 +6,7 @@ public class Herbivore extends Organisme {
     double debrouillardise;
     private double voraciteMin;
     private double voraciteMax;
+    double tailleMaximum;
     Set<String> aliments;
 
     public Herbivore(String nomEspece,double[] args , Set<String> aliments){
@@ -17,6 +18,7 @@ public class Herbivore extends Organisme {
         this.voraciteMin = args[7];
         this.voraciteMax = args[8];
         this.aliments = aliments;
+        this.tailleMaximum = args[9];
 
         //TODO aliments par defauts
     }
@@ -37,9 +39,13 @@ public class Herbivore extends Organisme {
         return this.aliments;
     }
 
+    public double getTailleMaximum(){
+        return tailleMaximum;
+    }
+
     double[] getInfo() //renvoi un tableau contenant toute les information numerique d'un carnivore.
     {
-        double[] info = {energieEnfant,besoinEnergie,efficaciteEnergie,resilience,fertilite,ageFertilite,debrouillardise,voraciteMin,voraciteMax};
+        double[] info = {energieEnfant,besoinEnergie,efficaciteEnergie,resilience,fertilite,ageFertilite,debrouillardise,voraciteMin,voraciteMax,tailleMaximum};
         return info;
     }
 

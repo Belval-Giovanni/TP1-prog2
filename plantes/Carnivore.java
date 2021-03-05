@@ -3,6 +3,7 @@ import java.util.Set;
 public class Carnivore extends Organisme {
 
     double debrouillardise;
+    double tailleMaximum;
     Set<String> aliments;
 
     public Carnivore(String nomEspece,double[] args , Set<String> aliments){
@@ -12,6 +13,7 @@ public class Carnivore extends Organisme {
 
         this.debrouillardise = args[6];
         this.aliments = aliments;
+        this.tailleMaximum = args[7];
 
         //TODO aliments par defauts
     }
@@ -24,9 +26,13 @@ public class Carnivore extends Organisme {
         return this.aliments;
     }
 
+    public double getTailleMaximum(){
+        return tailleMaximum;
+    }
+
     double[] getInfo() //renvoi un tableau contenant toute les information numerique d'un carnivore.
     {
-        double[] info = {energieEnfant,besoinEnergie,efficaciteEnergie,resilience,fertilite,ageFertilite,debrouillardise};
+        double[] info = {energieEnfant,besoinEnergie,efficaciteEnergie,resilience,fertilite,ageFertilite,debrouillardise,tailleMaximum};
         return info;
     }
 }

@@ -3,6 +3,7 @@ import java.util.Set;
 
 public class UsineCarnivore extends Usine{
     double debrouillardise;
+    double tailleMaximum;
     Set<String> aliments = new LinkedHashSet<String>();
     
     // double[] tableau2 = {tableau[0],tableau[1],tableau[2],tableau[3],tableau[4],tableau[5],0,0,0}; //sert à stocker les information numerique pertinante.
@@ -31,6 +32,18 @@ public class UsineCarnivore extends Usine{
 
     public void addAliment(String aliment){
         aliments.add(aliment);
+    }
+
+    public void setTailleMaximum(double tailleMaximum){
+        if(tailleMaximum>0){
+            
+            this.tailleMaximum = tailleMaximum;
+            this.tableau[9] = tailleMaximum;
+        }
+        else{
+            this.tailleMaximum = 10*this.energieEnfant;
+            this.tableau[9] = 10*this.energieEnfant;
+        }
     }
 
     // methodes utiles : 
