@@ -8,7 +8,7 @@ import java.util.Iterator;
  */
 public final class Simulation {
     public static void main(String[] args) {
-        int nombreCycles = 50;  //TODO remmetre a 50
+        int nombreCycles = 50; 
 
         Iterator<String> argsIterator = Arrays.stream(args).iterator();
         while (argsIterator.hasNext()) {

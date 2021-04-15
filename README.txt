@@ -2,7 +2,13 @@
 BELVAL GIOVANNI
 YANN SAAH
 
-Introduction : 
+Description : 
+
+Ce dossier contient un ensmble de de classe , dont la principale est la Classe Simulation.
+cet ensemble de classe a pour but de mettre a disposition un simulateur d'ecosysteme , et plus précisement de l'ecosysteme
+d'un lac dont la seul interaction avec l'extérieur serait l'energie ressus par rayonnement solaire.
+il y a trois tyes d'organisme qui interagisse (directement ou indirectement dan ce lac ) :
+les plantes , les herbivores et les carnivores ; et c'est principalement leurs interaction qui seront au coeur de nos ligne de code.
 
 
 
@@ -22,7 +28,8 @@ Seul le nom de la plante ne sera pas dans le tableau mais il suffira de voir si 
 
 
 j'ai personnellement choisi la deuxieme méthode car celle-ci me permet directement d'utilisé les valeurs dans le tableau pour 
-instancié une plante , de plus si je vois qu'un élément du tableau est 0 (c'est a dire que cet attribut n'a pas été initialisé ) j'instance quand meme la plante car 0 est la valeur par défaut. Un autre avantage de cette méthode est que nous pouvons donné les valeur par défaut directement dans le tableau si nous souhaitons en modifié la valeur pour tel ou tel attribut.
+instancié une plante , de plus si je vois qu'un élément du tableau est 0 (c'est a dire que cet attribut n'a pas été initialisé )
+j'instancie quand meme la plante car 0 est la valeur par défaut. Un autre avantage de cette méthode est que nous pouvons donné les valeur par défaut directement dans le tableau si nous souhaitons en modifié la valeur pour tel ou tel attribut.
 
 
 

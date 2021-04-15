@@ -23,8 +23,6 @@ public final class Lac {
      */
     public void tick() {
 
-        System.out.println("*****************"); //! test
-        System.out.println("debut d'un cycle"); //! test
 
 
         // calcul de l'energie totale : 
@@ -34,9 +32,6 @@ public final class Lac {
         for(Plante plante : plantes){
             energieTotale+=plante.getEnergie();
         }
-
-        System.out.println("______________________________________________________"); //! test
-        System.out.println("energieTotale contenu par les plante : "+energieTotale); //! test
 
         //________________________________
 
@@ -49,9 +44,6 @@ public final class Lac {
 
         for(Plante plante:plantes){
 
-            System.out.println("______________________________________________________"); //! test
-
-            System.out.println("traitement d'une plante "); //! test
 
             double energieAbsorbe;
 
@@ -68,20 +60,16 @@ public final class Lac {
             if(energieAbsorbe<plante.getBesoinEnergie()) // la plante ne reçoit pas assez d'energie
             {
 
-                System.out.println("je n'ai pas ressu asez d'energie"); //! test
-
                 double probaSurvie = Math.pow(plante.getResilience(),(int)difference); //calcul de la chance de survivre.
 
                 if(Math.random()>probaSurvie){
                     plante.energie = 0;
                     //* la plante meurt | elle doit etre supprimé de plantes.
-                    System.out.println("je suis une plante qui vient de mourrir par manque d'energie "); //! test
                 }
 
                 else {
                     plante.energie -= difference;
                     //* la plante survie on enleve l'energie manquante a son energie
-                    System.out.println("j'ai survécu au manque d'energie"); //! test
                 }
 
             }
@@ -89,11 +77,9 @@ public final class Lac {
             else //la plante reçoit assez d'energie
             {
 
-                System.out.println("j'ai ressus asez d'energie"); //! test
 
                 difference = Math.abs(difference);
 
-                System.out.println("differance : "+difference); //! test
 
                 if(plante.getAge()>=plante.getAgeFertilite()){
 
@@ -107,8 +93,6 @@ public final class Lac {
                         if(Math.random()<=plante.getFertilite()){ //la plante fais un enfant durant ce roulage
 
                             newBorn.add(new Plante(plante.getNomEspece(),plante.getInfo())); 
-
-                            System.out.println("j'ai fais un bébé plante"); //! test
 
 
                             if(plante.getEnergieEnfant()<=(int)difference-nbRoulage){
@@ -143,8 +127,6 @@ public final class Lac {
                 else{// la plante n'est pas en age de faire des enfant mais a reçu assez d'energie
 
                     plante.energie+= Math.abs(difference)*plante.getEfficaciteEnergie();//on rajoute l'energie qui reste.
-
-                    System.out.println("energie rajouté : "+Math.abs(difference)*plante.getEfficaciteEnergie()); //! test
                 }
             }
 
@@ -172,33 +154,9 @@ public final class Lac {
         this.plantes = clean;
         //____________________________________
 
-        //on met a niveau les plantes (dnt les herbivores vont se nourrir )
-
-        List<Plante> clean2 = new ArrayList<>();
-
-        for(Plante plante : plantes) // on supprime les plante mortes
-        {
-            if(!(plante.getEnergie() <= 0)){
-                clean2.add(plante); //on rajoute dans clean les plantes vivante i.e d'energie non null
-            }
-
-        }
-
-        for(Plante plante: newBorn){ // on rajoute les plantes qui vienne de venir au monde
-            clean2.add(plante);
-        }
-
-        this.plantes = clean2;
-
-
-        //! tick pour les herbivores :
+        //! tick pour les Herbivores ----------------------------------------------------------------
 
         for(Herbivore herbivore : herbivores){
-
-            System.out.println("______________________________________________________"); //! test
-
-
-            System.out.println("je traite un herbivore ");  //! test
 
             double energieLatente = 0; //energie en attente de l'herbivore 
 
@@ -210,26 +168,13 @@ public final class Lac {
                 aliments.add((String) iterator.next());
             } 
 
-            System.out.println("liste des aliments : "+aliments);  //! test
+            while (Math.random()<=herbivore.getDebrouillardise()) {
 
-            
-            double aleatoire = Math.random(); //!test
-
-            System.out.println("nombre aleatoire : "+aleatoire);  //! test
-            System.out.println("debrouillarise : "+herbivore.getDebrouillardise());  //! test
-
-            while (aleatoire<=herbivore.getDebrouillardise()) {
-
-                aleatoire = Math.random(); //!test
-
-                System.out.println("j'arrive au calcul de l'energie");  //! test
                 
                 int indexAliment = (int)(Math.random()*aliments.size()); //on choisis au hazard l'index de l'aliment a mangé
 
                 String aliment = aliments.get(indexAliment); //on selectionne l'aiment d'index indexAliment
 
-                
-                System.out.println("nom de l'aliment selectionné : "+aliment);  //! test
 
                 //on selectionne une plante au hasard qui a aliment comme nom de l'espece:
 
@@ -256,27 +201,20 @@ public final class Lac {
                 // on ajoute a l'energie latente de la plante une fration de la plante 
                 // entre voracitéMin fois l'energie et voracitéMax fois l'energie
 
-                System.out.println("energie minimale a absorbé  : "+herbivore.getVoraciteMin()*nourriture.getEnergie()); // ! test
-                System.out.println("energie absorbé max : "+herbivore.getVoraciteMax()*nourriture.getEnergie()); // ! test
 
                 double energieAjouter = nourriture.getEnergie()*(herbivore.getVoraciteMin() + Math.random()*(intervalle));;
 
                 energieLatente += energieAjouter;
 
-                System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
-
                 nourriture.energie -= energieAjouter; //on retire a la plante l'energie absorber par l'herbivore
 
             }
 
-            System.out.println("voici l'energie calculé Totale: "+energieLatente);  //! test
-            System.out.println("voici l'energie dont j'ai besoin : "+herbivore.getBesoinEnergie());  //! test
 
             double difference = (herbivore.getBesoinEnergie()-energieLatente);
 
             if(energieLatente<herbivore.getBesoinEnergie()) // la herbivore ne reçoit pas assez d'energie
             {
-                System.out.println("je n'ai pas assez d'energie"); //! test
                 
 
                 double probaSurvie = Math.pow(herbivore.getResilience(),(int)difference); //calcul de la chance de survivre.
@@ -287,13 +225,10 @@ public final class Lac {
                     herbivore.energie = 0;
                     //* la herbivore meurt | elle doit etre supprimé de herbivores.
 
-                    System.out.println("je suis un animal mort par manque d'energie"); //! test
                 }
 
 
                 else {
-                    System.out.println("j'ai survécu au manque d'energie | animal"); //! test
-                    System.out.println("je detient une energie actuelle de :"+herbivore.getEnergie()); //! test
 
                     herbivore.energie -= difference;
                     //* la herbivore survie on enleve l'energie manquante a son energie
@@ -317,13 +252,7 @@ public final class Lac {
 
                         if(Math.random()<=herbivore.getFertilite()){ //la herbivore fais un enfant durant ce roulage
 
-                            newHerbivores.add(new Herbivore(herbivore.getNomEspece(),herbivore.getInfo(),herbivore.aliments)); 
-
-                            System.out.println("je suis un animal qui a fait un enfant "); //! test
-
-                            System.out.println("nombre de roulage effectué : "+nbRoulage); //! test
-
-                            System.out.println("unité d'energie restante :  "+(int)difference); //! test
+                            newHerbivores.add(new Herbivore(herbivore.getNomEspece(),herbivore.getInfo(),herbivore.aliments));
 
                             if(herbivore.getEnergieEnfant()<=(int)difference-nbRoulage){
                                 nbRoulage += herbivore.getEnergieEnfant();
@@ -358,7 +287,6 @@ public final class Lac {
                 else{// la herbivore n'est pas en age de faire des enfant mais a reçu assez d'energie
 
                     herbivore.energie+= Math.abs(difference)*herbivore.getEfficaciteEnergie();//on rajoute l'energie qui reste.
-                    System.out.println("j'ai reçu "+Math.abs(difference)*herbivore.getEfficaciteEnergie()+"energie "); //! test
                 }
             }
 
@@ -369,12 +297,12 @@ public final class Lac {
         // mise niveau de plantes et de herbivores.
 
 
-        clean2 = new ArrayList<>();
+        clean = new ArrayList<>();
 
         for(Plante plante : plantes) // on supprime les plante mortes
         {
             if(!(plante.getEnergie() <= 0)){
-                clean2.add(plante); //on rajoute dans clean les plantes vivante i.e d'energie non null
+                clean.add(plante); //on rajoute dans clean les plantes vivante i.e d'energie non null
             }
 
         }
@@ -382,7 +310,7 @@ public final class Lac {
         //cette fois on ne rajoute pas les plantes qui sont née car cela a déja été fais avant la partie
         //sur les herbivores , et des plantes ne sont pas née depuis ce moment.
 
-        this.plantes = clean2;
+        this.plantes = clean;
 
         List<Herbivore> clean3 = new ArrayList<>();
 
@@ -404,10 +332,6 @@ public final class Lac {
 
         for(Carnivore carnivore : carnivores){
 
-            System.out.println("______________________________________________________"); //! test
-
-
-            System.out.println("je traite un carnivore ");  //! test
 
             double energieLatente = 0; //energie en attente de l'carnivore 
 
@@ -419,26 +343,11 @@ public final class Lac {
                 aliments.add((String) iterator.next());
             } 
 
-            System.out.println("liste des aliments : "+aliments);  //! test
-
-            
-            double aleatoire = Math.random(); //!test
-
-            System.out.println("nombre aleatoire : "+aleatoire);  //! test
-            System.out.println("debrouillarise : "+carnivore.getDebrouillardise());  //! test
-
-            while (aleatoire<=carnivore.getDebrouillardise()) {
-
-                aleatoire = Math.random(); //!test
-
-                System.out.println("j'arrive au calcul de l'energie");  //! test
+            while (Math.random()<=carnivore.getDebrouillardise()) {
                 
                 int indexAliment = (int)(Math.random()*aliments.size()); //on choisis au hazard l'index de l'aliment a mangé
 
                 String aliment = aliments.get(indexAliment); //on selectionne l'aiment d'index indexAliment
-
-                
-                System.out.println("nom de l'aliment selectionné : "+aliment);  //! test
 
                 //on selectionne une plante au hasard qui a aliment comme nom de l'espece:
 
@@ -484,8 +393,6 @@ public final class Lac {
     
                         energieLatente += energieAjouter;
     
-                        System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
-    
                         nourriture.energie -= energieAjouter; //on retire au carnivore l'energie absorber par l'autre carnivore
 
                     }
@@ -514,8 +421,6 @@ public final class Lac {
         
                         energieLatente += energieAjouter;
         
-                        System.out.println("voici l'energie calculé partielle: "+energieLatente);  //! test
-        
                         nourriture.energie -= energieAjouter; //on retire a l'herbivore  l'energie absorber par l'carnivore
 
                     }
@@ -526,14 +431,10 @@ public final class Lac {
 
             }
 
-            System.out.println("voici l'energie calculé Totale: "+energieLatente);  //! test
-            System.out.println("voici l'energie dont j'ai besoin : "+carnivore.getBesoinEnergie());  //! test
-
             double difference = (carnivore.getBesoinEnergie()-energieLatente);
 
             if(energieLatente<carnivore.getBesoinEnergie()) // la carnivore ne reçoit pas assez d'energie
             {
-                System.out.println("je n'ai pas assez d'energie"); //! test
                 
 
                 double probaSurvie = Math.pow(carnivore.getResilience(),(int)difference); //calcul de la chance de survivre.
@@ -544,13 +445,10 @@ public final class Lac {
                     carnivore.energie = 0;
                     //* la carnivore meurt | elle doit etre supprimé de carnivores.
 
-                    System.out.println("je suis un animal mort par manque d'energie"); //! test
                 }
 
 
                 else {
-                    System.out.println("j'ai survécu au manque d'energie | animal"); //! test
-                    System.out.println("je detient une energie actuelle de :"+carnivore.getEnergie()); //! test
 
                     carnivore.energie -= difference;
                     //* la carnivore survie on enleve l'energie manquante a son energie
@@ -575,12 +473,6 @@ public final class Lac {
                         if(Math.random()<=carnivore.getFertilite()){ //la carnivore fais un enfant durant ce roulage
 
                             newCarnivores.add(new Carnivore(carnivore.getNomEspece(),carnivore.getInfo(),carnivore.aliments)); 
-
-                            System.out.println("je suis un animal qui a fait un enfant "); //! test
-
-                            System.out.println("nombre de roulage effectué : "+nbRoulage); //! test
-
-                            System.out.println("unité d'energie restante :  "+(int)difference); //! test
 
                             if(carnivore.getEnergieEnfant()<=(int)difference-nbRoulage){
                                 nbRoulage += carnivore.getEnergieEnfant();
@@ -615,7 +507,6 @@ public final class Lac {
                 else{// la carnivore n'est pas en age de faire des enfant mais a reçu assez d'energie
 
                     carnivore.energie+= Math.abs(difference)*carnivore.getEfficaciteEnergie();//on rajoute l'energie qui reste.
-                    System.out.println("j'ai reçu "+Math.abs(difference)*carnivore.getEfficaciteEnergie()+"energie "); //! test
                 }
             }
 
@@ -637,15 +528,7 @@ public final class Lac {
             cleanC.add(carnivore_);
         }
 
-        this.carnivores = cleanC;
-
-        //! _________________________________________________________________________________________
-
-        System.out.println("nombre d'animaux restant : "+herbivores.size()); // ! test
-        System.out.println("nombre de plantes restante : "+plantes.size()); //! test
-        System.out.println("nombre de plantes restante : "+carnivores.size()); //! test
-
-        
+        this.carnivores = cleanC;      
         //____________________________________
 
     }
@@ -667,7 +550,7 @@ public final class Lac {
         }
     }
 
-    public void imprimeRapportH(PrintStream out) { //! test
+    public void imprimeRapportH(PrintStream out) { 
         var especes = this.herbivores.stream().collect(groupingBy(
                 Herbivore::getNomEspece,
                 summarizingDouble(Herbivore::getEnergie)));
@@ -682,7 +565,7 @@ public final class Lac {
         }
     }
 
-    public void imprimeRapportC(PrintStream out) { //! test
+    public void imprimeRapportC(PrintStream out) { 
         var especes = this.carnivores.stream().collect(groupingBy(
                 Carnivore::getNomEspece,
                 summarizingDouble(Carnivore::getEnergie)));

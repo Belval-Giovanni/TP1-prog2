@@ -137,6 +137,7 @@ public final class ConditionsInitiales {
                     case "voraciteMin" -> usine.setVoraciteMin(this.nextDouble("voraciteMin"));
                     case "voraciteMax" -> usine.setVoraciteMax(this.nextDouble("voraciteMax"));
                     case "aliments" -> usine.addAliment(this.nextString("aliments"));
+                    case "tailleMaximum" -> usine.setTailleMaximum(this.nextDouble("tailleMaximum"));
                     default -> throw new ConditionsInitialesInvalides(
                         "attribut \"" + name + "\" invalide pour un herbivore");
                 }
@@ -165,6 +166,7 @@ public final class ConditionsInitiales {
                     case "energieEnfant" -> usine.setEnergieEnfant(this.nextDouble("energieEnfant"));
                     case "debrouillardise" -> usine.setDebrouillardise(this.nextDouble("debrouillardise"));
                     case "aliments" -> usine.addAliment(this.nextString("aliments"));
+                    case "tailleMaximum" -> usine.setTailleMaximum(this.nextDouble("tailleMaximum"));
                     default -> throw new ConditionsInitialesInvalides(
                         "attribut \"" + name + "\" invalide pour un Carnivore");
                 }

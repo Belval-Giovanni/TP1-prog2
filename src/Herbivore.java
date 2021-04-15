@@ -1,3 +1,4 @@
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +21,10 @@ public class Herbivore extends Organisme {
         this.aliments = aliments;
         this.tailleMaximum = args[9];
 
-        //TODO aliments par defauts
+        if(aliments.size() == 0){
+            this.aliments = new LinkedHashSet<String>();
+            aliments.add("Bident de Beck");
+        }
     }
 
     public double getDebrouillardise(){

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lac>
-    <energieSolaire>6000</energieSolaire>
+    <energieSolaire>7000</energieSolaire>
     <plante quantite="100">
         <nomEspece>Bident de Beck</nomEspece>
         <besoinEnergie>20</besoinEnergie>
